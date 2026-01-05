@@ -24,6 +24,7 @@ def infer_audio(audio_path):
 
     return {
         "status": "Anomalous" if is_anomaly else "Normal",
+        "features": list(features), 
         "confidence": round(confidence, 2),
         "score": float(score) 
     }

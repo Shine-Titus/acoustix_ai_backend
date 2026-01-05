@@ -3,17 +3,22 @@ from fastapi.middleware.cors import CORSMiddleware
 import os
 import uuid
 import shutil
-from test import infer_audio
+from detect import infer_audio
 
 app = FastAPI(title="Engine Sound Anomaly Detector")
 
-# Allow frontend access (important)
+origins = [
+    "http://localhost",
+    "http://localhost:5500",
+    "http://127.0.0.1:5500",  
+]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],   # tighten later if needed
+    allow_origins=origins,  # List of origins to allow
     allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
+    allow_methods=["*"],  # Allow all HTTP methods (GET, POST, etc.)
+    allow_headers=["*"],  # Allow all headers
 )
 
 UPLOAD_DIR = "uploads"
@@ -52,6 +57,7 @@ async def analyze_audio(file: UploadFile = File(...)):
 
     return {
         "result": result["status"],
+        "features": result["features"],
         "confidence": result["confidence"]
     }
 
