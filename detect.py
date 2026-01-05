@@ -1,26 +1,10 @@
-# from feature_extraction import extract_features
-# import joblib
-# import os
-
-# MODEL_PATH = "model/isolation_forest.pkl"
-# model = joblib.load(MODEL_PATH)
-# DATA_DIR = 'testing_data'
-
-# for file in os.listdir(DATA_DIR):
-#     if file.endswith(".wav") or file.endswith(".mp3"):
-#         file_path = os.path.join(DATA_DIR, file)
-#         features = extract_features(file_path)
-#         score = model.decision_function([features])[0]
-#         print(f"score: {score}")
-
 import joblib
 import numpy as np
 from feature_extraction import extract_features
 
 MODEL_PATH = "model/isolation_forest.pkl"
-THRESHOLD = -0.02   # your calibrated threshold
+THRESHOLD = -0.02   
 
-# Load model ONCE
 model = joblib.load(MODEL_PATH)
 
 
