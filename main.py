@@ -15,10 +15,10 @@ origins = [
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,  # List of origins to allow
+    allow_origins=origins,  
     allow_credentials=True,
-    allow_methods=["*"],  # Allow all HTTP methods (GET, POST, etc.)
-    allow_headers=["*"],  # Allow all headers
+    allow_methods=["*"],  
+    allow_headers=["*"],
 )
 
 UPLOAD_DIR = "uploads"
@@ -37,7 +37,7 @@ def validate_audio(filename: str):
     return ext
 
 
-@app.post("/analyze")
+@app.post("/analyse")
 async def analyze_audio(file: UploadFile = File(...)):
     # Validate
     ext = validate_audio(file.filename)
