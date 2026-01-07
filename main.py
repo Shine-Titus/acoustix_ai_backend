@@ -57,7 +57,7 @@ async def analyze_audio(file: UploadFile = File(...)):
 
     return {
         "result": result["status"],
-        "features": result["features"],
+        # "features": result["features"],
         "confidence": result["confidence"]
     }
 
